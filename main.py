@@ -38,6 +38,36 @@ class Database:
 
 class Newsletter:
     @staticmethod
+    def update_signos():
+        signos = [
+            "aries",
+            "touro",
+            "gemeos",
+            "cancer",
+            "leao",
+            "virgem",
+            "libra",
+            "escorpiao",
+            "sagitario",
+            "capricornio",
+            "aquario",
+            "peixes",
+        ]
+
+        retorno = {}
+
+        for signo in signos:
+            url = f"https://capricho.abril.com.br/horoscopo/signo-{signo}/"
+            r = requests.get(url)
+            doc = BeautifulSoup(r.text, "html.parser")
+            m = doc.find(class_="previsoes_textos")
+            texto = m.text.strip()
+            resultado = {f"{signo}": {texto}}
+            retorno.update(resultado)
+
+        return retorno
+
+    @staticmethod
     def update_uol() -> list:
         url = "https://www.uol.com.br/"
 
@@ -197,6 +227,7 @@ def hello_world():
     globo = Newsletter().update_globo()
     uol = Newsletter().update_uol()
     cnn = Newsletter().update_cnn()
+    horos = Newsletter().update_signos()
     return render_template(
         "index.html",
         moeda=moedas,
@@ -208,6 +239,18 @@ def hello_world():
         cnnmanchete=cnn[1],
         uollink=uol[2],
         uolmanchete=uol[1],
+        aries=horos["aries"],
+        touro=horos["touro"],
+        gemeos=horos["gemeos"],
+        cancer=horos["cancer"],
+        leao=horos["leao"],
+        virgem=horos["virgem"],
+        libra=horos["libra"],
+        escorpiao=horos["escorpiao"],
+        sagitario=horos["sagitario"],
+        capricornio=horos["capricornio"],
+        aquario=horos["aquario"],
+        peixes=horos["peixes"],
     )
 
 
