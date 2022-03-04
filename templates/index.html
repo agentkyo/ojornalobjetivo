@@ -1,0 +1,193 @@
+<!-- Bootstrap CSS -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Jornal Objetivo - Sua leitura rápida do dia</title>
+</head>
+
+<body>
+    <h1 style="text-align: center;"><strong>O Jornal Objetivo</strong></h1>
+    <br>
+    <br>
+    <div>
+        <h2>
+            <p style="text-align: center;">O seu jornal <b>RAIZ</b> de leitura simplificada. </p>
+        </h2>
+        <br>
+        <p style="text-align: center;">Você pode apoioar o nosso projeto com doações, sugestões ou
+            contratando nossas APIs. Saiba mais através do nosso contato: ojornalobjetivo@gmail.com</p>
+        <br>
+        <p style=" text-align: center;"> Está é a edição referente ao dia:</p>
+    </div>
+    <div>
+        <h2>
+            <div style="text-align: center;" id="current_date">
+                </p>
+        </h2>
+    </div>
+    <br>
+    <hr />
+    <br>
+    <div>
+        <h2 style="text-align: center ;color: #000000">Principais Manchetes do dia:</h2>
+        <table border="1" , center="center" width="100%">
+            <tr>
+                <th width="50%" , text-align: center;><b>Fonte/Veiculo</b></th>
+                <th width="50%" , text-align: center;><b>Manchete & Link</b></th>
+            </tr>
+            <tr>
+                <th>Globo.com</th>
+                <th><a href="{{ globolink }}">{{ globomanchete }}</a></th>
+            </tr>
+            <tr>
+                <th>Uol.com.br</th>
+                <th><a href="{{ uollink }}">{{ uolmanchete }}</a></th>
+            </tr>
+            <tr>
+                <th>cnnbrasil.com.br</th>
+                <th><a href="{{ cnnlink }}">{{ cnnmanchete }}</a></th>
+            </tr>
+            </tr>
+        </table>
+
+    </div>
+    <div>
+        <h5 style="text-align: center ;color: #000000">Não encontrou sua fonte de noticias favorita? Entre em
+            contato
+            pelo formulário de sugestões!</h5>
+    </div>
+    <br>
+    <hr />
+    <br>
+    <div>
+        <h2 style="text-align: center ;color: #000000">Cota&ccedil;&atilde;o das Principais Moedas:</h2>
+        <table border=" 1" , center="center" width="100%">
+            <tr>
+                <th width="25%" , text-align: center;><b>Par/Moeda</b></th>
+                <th width="25%" , text-align: center;><b>Valor</b></th>
+                <th width="25%" , text-align: center;><b>Variação</b></th>
+            </tr>
+            <tr>
+                <th>Real/Dolar</th>
+                <th>1 Dolar = {{ moeda.price_dolar}} Reais</th>
+                <th>{{ moeda.var_dolar }}%</th>
+            </tr>
+            <tr>
+                <th>Real/Euro</th>
+                <th>1 Euro = {{ moeda.price_euro}} Reais</th>
+                <th>{{ moeda.var_euro }}%</th>
+            </tr>
+            <tr>
+                <th>Real/Rublo Russo</th>
+                <th>1 Real = {{ moeda.price_rub}} Rublos Russos</th>
+                <th>{{ moeda.var_rub }}%</th>
+            </tr>
+            <tr>
+                <th>Real/Bitcoin</th>
+                <th>1 Bitcoin = {{ moeda.price_btc }} Reais</th>
+                <th>{{ moeda.var_btc }} %</th>
+            </tr>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h5 style="text-align: center ;color: #000000">Não encontrou sua moeda? Entre em contato pelo formulário
+            de
+            sugestões!</h5>
+    </div>
+    <br>
+    <hr />
+    <br>
+    <div>
+        <h2 style="text-align: center ;color: #000000">Cotação dos principais ativos do Mercado</h2>
+        <table border=" 1" , center="center" width="100%">
+            <tr>
+                <th width="25%" , text-align: center;><b>Papel</b></th>
+                <th width="25%" , text-align: center;><b>Cotação Atual</b></th>
+                <th width="25%" , text-align: center;><b>Variação</b></th>
+            </tr>
+            <tr>
+                <th>Vale S. A. (VALE3)</th>
+                <th>22</th>
+            </tr>
+            <tr>
+                <th>Itaú Unibanco (ITUB4)</th>
+                <th>26</th>
+            </tr>
+            <tr>
+                <th>Petrobras (PETR4)</th>
+                <th>26</th>
+            </tr>
+            </tr>
+        </table>
+        <div>
+            <h5 style="text-align: center ;color: #000000">Não encontrou o seu ativo? Entre em contato pelo
+                formulário
+                de sugestões</h5>
+        </div>
+    </div>
+    <br>
+    <hr />
+    <br>
+    <div>
+        <h2 style="text-align: center;">Pensamento/Reflexão do dia:</h2>
+        <p style="text-align: center;"> {{ frase }}</p>
+    </div>
+    <br>
+    <hr />
+    <br>
+
+    <div text-align: center>
+        <h2 style="text-align: center;">Meme/Cartoon do dia:</h2>
+        <center>
+            <p><img src={{ meme }} alt="meme" style="text-align: center"></p>
+        </center>
+
+    </div>
+    <br>
+    <hr />
+    <br>
+    <div>
+        <h2 style="color: #000000; text-align: center;">Faça parte deste projeto!</h2>
+        <table border=" 1" , center="center" width="100%">
+            <tr>
+                <th width="25%" , text-align: center;><b>Total de Assinantes:</b></th>
+                <th width="25%" , text-align: center;><b>500</b></th>
+            </tr>
+            <tr>
+                <th width="25%" , text-align: center;><b>Leitores Hoje:</b></th>
+                <th width="25%" , text-align: center;><b>100</b></th>
+            </tr>
+            <tr>
+                <th width="25%" , text-align: center;><b>Total de Acessos:</b></th>
+                <th width="25%" , text-align: center;><b>10</b></th>
+
+            </tr>
+            <tr>
+                <th width="25%" , text-align: center;><b>Total de Apoiadores:</b></th>
+                <th width="25%" , text-align: center;><b>50</b></th>
+            </tr>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <hr />
+    <br>
+    <h2 style="color: #000000; text-align: center;">Contatos e sugestões</h2>
+    <h2 style="color: #000000; text-align: center;">ojornalobjetivo@gmail.com</h2>
+</body>
+<script>
+    date = new Date();
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    day = date.getDate();
+    document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
+</script>
+
+</html>
