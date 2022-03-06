@@ -1,4 +1,5 @@
 import requests
+from replit import db
 import email.message
 import smtplib
 import sqlite3
@@ -38,7 +39,7 @@ class Database:
 
 class Newsletter:
     @staticmethod
-    def update_signos():
+    def update_signos() -> map:
         signos = [
             "aries",
             "touro",
@@ -62,7 +63,7 @@ class Newsletter:
             doc = BeautifulSoup(r.text, "html.parser")
             m = doc.find(class_="previsoes_textos")
             texto = m.text.strip()
-            resultado = {f"{signo}": {texto}}
+            resultado = {f"{signo}": f"{texto}"}
             retorno.update(resultado)
 
         return retorno
@@ -206,7 +207,7 @@ class Newsletter:
     @staticmethod
     def update_meme() -> str:
         meme_link = (
-            "https://www.ahnegao.com.br/wp-content/uploads/2022/02/meme-seg-2z-37.jpg"
+            "https://www.ahnegao.com.br/wp-content/uploads/2022/03/meme-sab-7f-7.jpg"
         )
         return meme_link
 
@@ -215,23 +216,81 @@ class Newsletter:
         frase_do_dia = "Antes, a questão era descobrir se a vida precisava de ter algum significado para ser vivida. Agora, ao contrário, ficou evidente que ela será vivida melhor se não tiver significado."
         return frase_do_dia
 
+    @staticmethod
+    def update_stocks() -> map:
+        stocks = ["petrobras-petr4", "vale-vale3", "itau-unibanco-itub4"]
+        retorno = {}
+        for stock in stocks:
+
+            url = f"https://www.infomoney.com.br/cotacoes/b3/acao/{stock}/"
+            r = requests.get(url)
+            doc = BeautifulSoup(r.text, "html.parser")
+            m = doc.find_all(class_="value")
+            rx = re.search(
+                "([0-9][0-9],[0-9][0-9])|([0-9][0-9][0-9],[0-9][0-9])|([0-9],[0-9][0-9])",
+                str(m[0]),
+            )
+            valor = rx[0].replace(",", ".")
+            resultado = {f"{stock}": f"{valor}"}
+            retorno.update(resultado)
+
+        return retorno
+
+    @staticmethod
+    def create_keys():
+        db["today"] = 1
+        db["views"] = 1
+        return
+
+    @staticmethod
+    def update_todays_views() -> int:
+        value = db["today"]
+        if value == 0:
+            db["today"] = 1
+            leitores = db["today"]
+            return leitores
+        else:
+            leitores = value + 1
+            db["today"] = leitores
+            return leitores
+
+    @staticmethod
+    def update_views() -> int:
+        value = db["views"]
+        if value == 0:
+            db["views"] = 1
+            leitores = db["views"]
+            return leitores
+        else:
+            leitores = value + 1
+            db["views"] = leitores
+            return leitores
+
 
 app = Flask("newsletter")
+
+
+@app.route("/ck")
+def keys():
+    x = Newsletter.create_keys()
+    return
 
 
 @app.route("/")
 def hello_world():
     moedas = Newsletter().update_currency()
-    frase_do_dia = Newsletter().update_quote()
     meme_link = Newsletter().update_meme()
     globo = Newsletter().update_globo()
     uol = Newsletter().update_uol()
     cnn = Newsletter().update_cnn()
     horos = Newsletter().update_signos()
+    stocks = Newsletter().update_stocks()
+    views = Newsletter.update_views()
+    todays = Newsletter().update_todays_views()
+
     return render_template(
         "index.html",
         moeda=moedas,
-        frase=frase_do_dia,
         meme=meme_link,
         globolink=globo[2],
         globomanchete=globo[1],
@@ -251,6 +310,11 @@ def hello_world():
         capricornio=horos["capricornio"],
         aquario=horos["aquario"],
         peixes=horos["peixes"],
+        petr4=stocks["petrobras-petr4"],
+        vale3=stocks["vale-vale3"],
+        itub4=stocks["itau-unibanco-itub4"],
+        hoje=todays,
+        total=views,
     )
 
 

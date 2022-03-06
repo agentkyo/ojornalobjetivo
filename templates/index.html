@@ -20,8 +20,8 @@
             <p style="text-align: center;">O seu jornal <b>RAIZ</b> de leitura simplificada. </p>
         </h2>
         <br>
-        <p style="text-align: center;">Você pode apoioar o nosso projeto com doações, sugestões ou
-            contratando nossas APIs. Saiba mais através do nosso contato: ojornalobjetivo@gmail.com</p>
+        <p style="text-align: center;">Você pode apoioar o nosso projeto! Saiba mais através do nosso contato:
+            ojornalobjetivo@gmail.com</p>
         <br>
         <p style=" text-align: center;"> Está é a edição referente ao dia:</p>
     </div>
@@ -90,7 +90,7 @@
             </tr>
             <tr>
                 <th>Real/Bitcoin</th>
-                <th>1 Bitcoin = {{ moeda.price_btc }} Reais</th>
+                <th>1 Bitcoin = {{ moeda.price_btc }} Mil Reais</th>
                 <th>{{ moeda.var_btc }} %</th>
             </tr>
             </tr>
@@ -108,21 +108,20 @@
         <h2 style="text-align: center ;color: #000000">Cotação dos principais ativos do Mercado</h2>
         <table border=" 1" , center="center" width="100%">
             <tr>
-                <th width="25%" , text-align: center;><b>Papel</b></th>
-                <th width="25%" , text-align: center;><b>Cotação Atual</b></th>
-                <th width="25%" , text-align: center;><b>Variação</b></th>
+                <th width="33%" , text-align: center;><b>Papel</b></th>
+                <th width="33%" , text-align: center;><b>Cotação Atual</b></th>
             </tr>
             <tr>
                 <th>Vale S. A. (VALE3)</th>
-                <th>22</th>
+                <th>{{vale3}}</th>
             </tr>
             <tr>
                 <th>Itaú Unibanco (ITUB4)</th>
-                <th>26</th>
+                <th>{{itub4}}</th>
             </tr>
             <tr>
                 <th>Petrobras (PETR4)</th>
-                <th>26</th>
+                <th>{{petr4}}</th>
             </tr>
             </tr>
         </table>
@@ -167,6 +166,10 @@
                 <th>{{gemeos}}</th>
             </tr>
             <tr>
+                <th>Leão</th>
+                <th>{{leao}}</th>
+            </tr>
+            <tr>
                 <th>Libra</th>
                 <th>{{libra}}</th>
             </tr>
@@ -192,13 +195,17 @@
         </table>
         <div>
             <h5 style="text-align: center ;color: #000000">Fonte dos dados: Capricho.com.br -> Todos os créditos aos
-                autores da página!</h5>
+                autores da Capricho. </h5>
         </div>
-
+        <br>
+        <hr />
+        <br>
     </div>
     <div>
-        <h2 style="text-align: center;">Pensamento/Reflexão do dia:</h2>
-        <p style="text-align: center;"> {{ frase }}</p>
+        <h2 style="text-align: center;">Frase Motivacional - By pensador.com.br:</h2>
+        <p style="text-align: center;">
+            <script language="javascript" src="https://www.pensador.com/blog.php?t=fm"></script>
+        </p>
     </div>
     <br>
     <hr />
@@ -218,22 +225,12 @@
         <h2 style="color: #000000; text-align: center;">Faça parte deste projeto!</h2>
         <table border=" 1" , center="center" width="100%">
             <tr>
-                <th width="25%" , text-align: center;><b>Total de Assinantes:</b></th>
-                <th width="25%" , text-align: center;><b>500</b></th>
-            </tr>
-            <tr>
                 <th width="25%" , text-align: center;><b>Leitores Hoje:</b></th>
                 <th width="25%" , text-align: center;><b>100</b></th>
             </tr>
             <tr>
                 <th width="25%" , text-align: center;><b>Total de Acessos:</b></th>
                 <th width="25%" , text-align: center;><b>10</b></th>
-
-            </tr>
-            <tr>
-                <th width="25%" , text-align: center;><b>Total de Apoiadores:</b></th>
-                <th width="25%" , text-align: center;><b>50</b></th>
-            </tr>
             </tr>
         </table>
     </div>
