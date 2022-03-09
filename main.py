@@ -237,12 +237,6 @@ class Newsletter:
         return retorno
 
     @staticmethod
-    def create_keys():
-        db["today"] = 1
-        db["views"] = 1
-        return
-
-    @staticmethod
     def update_todays_views() -> int:
         value = db["today"]
         if value == 0:
@@ -269,23 +263,9 @@ class Newsletter:
 
 app = Flask("newsletter")
 
-
-@app.route("/ck")
-def keys():
-    x = Newsletter.create_keys()
-    return
-
-
-@app.route("/coins")
-def atualizar_moedas():
-    moedas = Newsletter().update_currency()
-    return moedas
-
-
 @app.route("/")
 def hello_world():
     moedas = Newsletter().update_currency()
-    meme_link = Newsletter().update_meme()
     globo = Newsletter().update_globo()
     uol = Newsletter().update_uol()
     cnn = Newsletter().update_cnn()
@@ -297,7 +277,6 @@ def hello_world():
     return render_template(
         "index.html",
         moeda=moedas,
-        meme=meme_link,
         globolink=globo[2],
         globomanchete=globo[1],
         cnnlink=cnn[2],
