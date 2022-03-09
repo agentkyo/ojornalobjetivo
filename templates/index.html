@@ -9,31 +9,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Jornal Objetivo - Sua leitura rápida do dia</title>
+    <style>
+        .preto {
+            color: #000000
+        }
+    </style>
 </head>
 
 <body>
-    <h1 style="text-align: center;"><strong>O Jornal Objetivo</strong></h1>
-    <br>
-    <br>
+    <h1 style="text-align: center;"><strong>O Jornal Objetivo</strong></h1><br><br>
     <div>
         <h2>
-            <p style="text-align: center;">O seu jornal <b>RAIZ</b> de leitura simplificada. </p>
-        </h2>
-        <br>
-        <p style="text-align: center;">Você pode apoioar o nosso projeto! Saiba mais através do nosso contato:
-            ojornalobjetivo@gmail.com</p>
-        <br>
-        <p style=" text-align: center;"> Está é a edição referente ao dia:</p>
+            <p style="text-align: center;">O seu jornal <b>RAIZ</b>de leitura simplificada. </p>
+        </h2><br>
+        <p style="text-align: center;">Você pode apoioar o nosso projeto ! Saiba mais através do nosso contato:
+            ojornalobjetivo@gmail.com</p><br>
+        <p style=" text-align: center;">Está é a edição referente ao dia:</p>
     </div>
     <div>
         <h2>
             <div style="text-align: center;" id="current_date">
                 </p>
         </h2>
-    </div>
-    <br>
-    <hr />
-    <br>
+    </div><br>
+    <hr /><br>
     <div>
         <h2 style="text-align: center ;color: #000000">Principais Manchetes do dia:</h2>
         <table border="1" , center="center" width="100%">
@@ -43,30 +42,46 @@
             </tr>
             <tr>
                 <th>Globo.com</th>
-                <th><a href="{{ globolink }}">{{ globomanchete }}</a></th>
+                <th><a href="{{ globolink }}"> {
+                        {
+                        globomanchete
+                        }
+                        }
+
+                    </a></th>
             </tr>
             <tr>
                 <th>Uol.com.br</th>
-                <th><a href="{{ uollink }}">{{ uolmanchete }}</a></th>
+                <th><a href="{{ uollink }}"> {
+                        {
+                        uolmanchete
+                        }
+                        }
+
+                    </a></th>
             </tr>
             <tr>
                 <th>cnnbrasil.com.br</th>
-                <th><a href="{{ cnnlink }}">{{ cnnmanchete }}</a></th>
+                <th><a href="{{ cnnlink }}"> {
+                        {
+                        cnnmanchete
+                        }
+                        }
+
+                    </a></th>
             </tr>
             </tr>
         </table>
-
     </div>
     <div>
-        <h5 style="text-align: center ;color: #000000">Não encontrou sua fonte de noticias favorita? Entre em
-            contato
-            pelo formulário de sugestões!</h5>
-    </div>
-    <br>
-    <hr />
-    <br>
+        <h5 style="text-align: center ;color: #000000">Não encontrou sua fonte de noticias favorita? Entre em contato
+            pelo formulário de sugestões !</h5>
+    </div><br>
+    <hr /><br>
     <div>
-        <h2 style="text-align: center ;color: #000000">Cota&ccedil;&atilde;o das Principais Moedas:</h2>
+        <h2 style="text-align: center ;color: #000000">Cota&ccedil;
+            &atilde;
+            o das Principais Moedas:</h2>
         <table border=" 1" , center="center" width="100%">
             <tr>
                 <th width="25%" , text-align: center;><b>Par/Moeda</b></th>
@@ -75,35 +90,80 @@
             </tr>
             <tr>
                 <th>Real/Dolar</th>
-                <th>1 Dolar = {{ moeda.price_dolar}} Reais</th>
-                <th>{{ moeda.var_dolar }}%</th>
+                <th>1 Dolar= {
+                    {
+                    moeda.price_dolar
+                    }
+                    }
+
+                    Reais</th>
+                <th> {
+                    {
+                    moeda.var_dolar
+                    }
+                    }
+
+                    %</th>
             </tr>
             <tr>
                 <th>Real/Euro</th>
-                <th>1 Euro = {{ moeda.price_euro}} Reais</th>
-                <th>{{ moeda.var_euro }}%</th>
+                <th>1 Euro= {
+                    {
+                    moeda.price_euro
+                    }
+                    }
+
+                    Reais</th>
+                <th> {
+                    {
+                    moeda.var_euro
+                    }
+                    }
+
+                    %</th>
             </tr>
             <tr>
                 <th>Real/Rublo Russo</th>
-                <th>1 Real = {{ moeda.price_rub}} Rublos Russos</th>
-                <th>{{ moeda.var_rub }}%</th>
+                <th>1 Real= {
+                    {
+                    moeda.price_rub
+                    }
+                    }
+
+                    Rublos Russos</th>
+                <th> {
+                    {
+                    moeda.var_rub
+                    }
+                    }
+
+                    %</th>
             </tr>
             <tr>
                 <th>Real/Bitcoin</th>
-                <th>1 Bitcoin = {{ moeda.price_btc }} Mil Reais</th>
-                <th>{{ moeda.var_btc }} %</th>
+                <th>1 Bitcoin= {
+                    {
+                    moeda.price_btc
+                    }
+                    }
+
+                    Mil Reais</th>
+                <th> {
+                    {
+                    moeda.var_btc
+                    }
+                    }
+
+                    %</th>
             </tr>
             </tr>
         </table>
     </div>
     <div>
-        <h5 style="text-align: center ;color: #000000">Não encontrou sua moeda? Entre em contato pelo formulário
-            de
-            sugestões!</h5>
-    </div>
-    <br>
-    <hr />
-    <br>
+        <h5 style="text-align: center ;color: #000000">Não encontrou sua moeda? Entre em contato pelo formulário de
+            sugestões !</h5>
+    </div><br>
+    <hr /><br>
     <div>
         <h2 style="text-align: center ;color: #000000">Cotação dos principais ativos do Mercado</h2>
         <table border=" 1" , center="center" width="100%">
@@ -113,27 +173,42 @@
             </tr>
             <tr>
                 <th>Vale S. A. (VALE3)</th>
-                <th>{{vale3}}</th>
+                <th> {
+                    {
+                    vale3
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Itaú Unibanco (ITUB4)</th>
-                <th>{{itub4}}</th>
+                <th> {
+                    {
+                    itub4
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Petrobras (PETR4)</th>
-                <th>{{petr4}}</th>
+                <th> {
+                    {
+                    petr4
+                    }
+                    }
+
+                </th>
             </tr>
             </tr>
         </table>
         <div>
-            <h5 style="text-align: center ;color: #000000">Não encontrou o seu ativo? Entre em contato pelo
-                formulário
+            <h5 style="text-align: center ;color: #000000">Não encontrou o seu ativo? Entre em contato pelo formulário
                 de sugestões</h5>
         </div>
-    </div>
-    <br>
-    <hr />
-    <br>
+    </div><br>
+    <hr /><br>
     <div>
         <h2 style="text-align: center ;color: #000000">Horóscopo - by Capricho.com.br </h2>
         <table border=" 1" , center="center" width="100%">
@@ -143,86 +218,143 @@
             </tr>
             <tr>
                 <th>Aquário</th>
-                <th>{{aquario}}</th>
+                <th> {
+                    {
+                    aquario
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Áres</th>
-                <th>{{aries}}</th>
+                <th> {
+                    {
+                    aries
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Câncer</th>
-                <th>{{cancer}}</th>
+                <th> {
+                    {
+                    cancer
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Capricórnio</th>
-                <th>{{capricornio}}</th>
+                <th> {
+                    {
+                    capricornio
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Escorpião</th>
-                <th>{{escorpiao}}</th>
+                <th> {
+                    {
+                    escorpiao
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Gemêos</th>
-                <th>{{gemeos}}</th>
+                <th> {
+                    {
+                    gemeos
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Leão</th>
-                <th>{{leao}}</th>
+                <th> {
+                    {
+                    leao
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Libra</th>
-                <th>{{libra}}</th>
+                <th> {
+                    {
+                    libra
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Peixes</th>
-                <th>{{peixes}}</th>
+                <th> {
+                    {
+                    peixes
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Sargitário</th>
-                <th>{{sagitario}}</th>
+                <th> {
+                    {
+                    sagitario
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
                 <th>Touro</th>
-                <th>{{touro}}</th>
+                <th> {
+                    {
+                    touro
+                    }
+                    }
+
+                </th>
             </tr>
             <tr>
-                <th>Virgem
-                </th>
-                <th>{{virgem}}
+                <th>Virgem </th>
+                <th> {
+                    {
+                    virgem
+                    }
+                    }
+
                 </th>
             </tr>
             </tr>
         </table>
         <div>
-            <h5 style="text-align: center ;color: #000000">Fonte dos dados: Capricho.com.br -> Todos os créditos aos
+            <h5 style="text-align: center ;color: #000000">Fonte dos dados: Capricho.com.br ->Todos os créditos aos
                 autores da Capricho. </h5>
-        </div>
-        <br>
-        <hr />
-        <br>
-    </div>
-    <div>
-        <h2 style="text-align: center;">Frase Motivacional - By pensador.com.br:</h2>
-        <p style="text-align: center;">
-            <script language="javascript" src="https://www.pensador.com/blog.php?t=fm"></script>
-        </p>
+        </div><br>
+        <hr /><br>
     </div>
     <br>
-    <hr />
-    <br>
-
+    <hr /><br>
     <div text-align: center>
         <h2 style="text-align: center;">Meme/Cartoon do dia:</h2>
         <center>
-            <p><img src={{ meme }} alt="meme" style="text-align: center"></p>
+            <p><img src={ { meme } } alt="meme" style="text-align: center"></p>
         </center>
-
-    </div>
-    <br>
-    <hr />
-    <br>
+    </div><br>
+    <hr /><br>
     <div>
-        <h2 style="color: #000000; text-align: center;">Faça parte deste projeto!</h2>
+        <h2 style="color: #000000; text-align: center;">Faça parte deste projeto !</h2>
         <table border=" 1" , center="center" width="100%">
             <tr>
                 <th width="25%" , text-align: center;><b>Leitores Hoje:</b></th>
@@ -233,10 +365,8 @@
                 <th width="25%" , text-align: center;><b>10</b></th>
             </tr>
         </table>
-    </div>
-    <br>
-    <hr />
-    <br>
+    </div><br>
+    <hr /><br>
     <h2 style="color: #000000; text-align: center;">Contatos e sugestões</h2>
     <h2 style="color: #000000; text-align: center;">ojornalobjetivo@gmail.com</h2>
 </body>
@@ -246,6 +376,21 @@
     month = date.getMonth() + 1;
     day = date.getDate();
     document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
+</script>
+<script>
+    fetch("http://192.168.15.6:5000/coins", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("Success:", data);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 </script>
 
 </html>

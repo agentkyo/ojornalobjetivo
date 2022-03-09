@@ -1,5 +1,4 @@
 import requests
-from replit import db
 import email.message
 import smtplib
 import sqlite3
@@ -7,6 +6,7 @@ import json
 from bs4 import BeautifulSoup
 import re
 from flask import Flask, render_template
+import asyncio
 
 
 class Database:
@@ -73,24 +73,16 @@ class Newsletter:
         url = "https://www.uol.com.br/"
 
         r = requests.get(url=url)
-
         if r.status_code == 200:
-
             doc = BeautifulSoup(r.text, "html.parser")
-
             m = doc.find_all(class_="title__element headlineMain__title")
-
             manchete = m[0].text.strip()
-
             link = doc.find_all(class_="hyperlink headlineMain__link")
-
             rx = re.search(
                 "(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])",
                 str(link[0]),
             )
-
             link_uol = rx[0].strip()
-
             return r.status_code, manchete, link_uol
         else:
             retorno = {"status_code": r.status_code}
@@ -103,22 +95,15 @@ class Newsletter:
         r = requests.get(url=url)
 
         if r.status_code == 200:
-
             doc = BeautifulSoup(r.text, "html.parser")
-
             m = doc.find_all(class_="post__title")
-
             manchete = m[0].text.strip().split(";")
-
             link = doc.find_all(class_="post__link")
-
             rx = re.search(
                 "(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])",
                 str(link[0]),
             )
-
             link = rx[0]
-
             return r.status_code, manchete[0], link
         else:
             retorno = {"status_code": r.status_code}
@@ -131,24 +116,16 @@ class Newsletter:
         r = requests.get(url=url)
 
         if r.status_code == 200:
-
             doc = BeautifulSoup(r.text, "html.parser")
-
             m = doc.find_all(class_="home__title")
-
             manchete = re.search("[A-Z].*<", str(m[0]))
-
             manchete = manchete[0][:-1]
-
             link = doc.find_all(class_="home__post")
-
             rx = re.search(
                 "(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])",
                 str(link[0]),
             )
-
             link = rx[0]
-
             return r.status_code, manchete, link
         else:
             retorno = {"status_code": r.status_code}
@@ -237,34 +214,14 @@ class Newsletter:
         return retorno
 
     @staticmethod
-    def create_keys():
-        db["today"] = 1
-        db["views"] = 1
-        return
-
-    @staticmethod
     def update_todays_views() -> int:
-        value = db["today"]
-        if value == 0:
-            db["today"] = 1
-            leitores = db["today"]
-            return leitores
-        else:
-            leitores = value + 1
-            db["today"] = leitores
-            return leitores
+        leitores = 1
+        return leitores
 
     @staticmethod
     def update_views() -> int:
-        value = db["views"]
-        if value == 0:
-            db["views"] = 1
-            leitores = db["views"]
-            return leitores
-        else:
-            leitores = value + 1
-            db["views"] = leitores
-            return leitores
+        leitores = 1
+        return leitores
 
 
 app = Flask("newsletter")
@@ -276,14 +233,15 @@ def keys():
     return
 
 
-@app.route("/coins")
+@app.route("/coins", methods=["GET", "POST", "OPTIONS"])
 def atualizar_moedas():
     moedas = Newsletter().update_currency()
+    print(moedas)
     return moedas
 
 
 @app.route("/")
-def hello_world():
+def carregar_pagina():
     moedas = Newsletter().update_currency()
     meme_link = Newsletter().update_meme()
     globo = Newsletter().update_globo()
