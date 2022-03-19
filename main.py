@@ -260,7 +260,54 @@ class Newsletter:
             db["views"] = leitores
             return leitores
 
-
+    @staticmethod
+    def update_lottery() -> dict:
+      base_url = "https://redeloteria.com.br"
+      r = requests.get(base_url)
+      doc = BeautifulSoup(r.text, "html.parser")
+      resultado_mega=[]
+      resultado_loto=[]
+      resultado_quina=[]
+      resultado_lotomania=[]
+      concursos = ['Mega','LotoFacil','Quina','LotoMania']
+      for concurso in concursos:
+        classe = doc.find_all(class_=f"numberCircle{concurso}")
+        for n in classe:
+            x = re.search("\d.",str(n))
+    
+            if concurso == 'Mega':
+                resultado_mega.append(x[0])
+            elif concurso == 'LotoFacil':
+                resultado_loto.append(x[0])
+            elif concurso == 'Quina':
+                resultado_quina.append(x[0])
+            else:
+                resultado_lotomania.append(x[0])
+      
+      url_content = ["https://redeloteria.com.br/resultado-mega-sena","https://redeloteria.com.br/resultado-lotofacil","https://redeloteria.com.br/resultado-da-quina","https://redeloteria.com.br/resultado-lotomania"]
+      resultado_concursos = []
+      for url in url_content:
+        r = requests.get(url)
+        doc = BeautifulSoup(r.text, "html.parser")
+        classe = doc.find_all("h2")
+        x = classe[0]
+        resultado_concursos.append(str(x).replace('<h2>','').replace('</h2>',''))
+      
+      retorno_concursos = {
+          'concurso_mega':resultado_concursos[0],
+          'concurso_loto':resultado_concursos[1],
+          'concurso_quina':resultado_concursos[2],
+          'concurso_lotomania':resultado_concursos[3]
+      }
+      
+      retorno = {
+        "mega": {"title": retorno_concursos["concurso_mega"], "result": resultado_mega},
+        "loto": {"title": retorno_concursos["concurso_loto"],"result": resultado_loto},
+        "quina": {"title": retorno_concursos["concurso_quina"],"result": resultado_quina},
+        "lotomania": {"title": retorno_concursos["concurso_lotomania"],"result": resultado_lotomania},
+    }
+  
+      return retorno
 app = Flask("newsletter")
 
 @app.route("/")
@@ -273,6 +320,7 @@ def hello_world():
     stocks = Newsletter().update_stocks()
     views = Newsletter.update_views()
     todays = Newsletter().update_todays_views()
+    lottery = Newsletter().update_lottery()
 
     return render_template(
         "index.html",
@@ -300,6 +348,14 @@ def hello_world():
         itub4=stocks["itau-unibanco-itub4"],
         hoje=todays,
         total=views,
+        resultado_mega=lottery['mega']["result"],
+        resultado_quina=lottery['quina']["result"],
+        resultado_loto=lottery['loto']["result"],
+        resultado_loto_mania=lottery['lotomania']["result"],
+        conc_mega=lottery['mega']["title"],
+        conc_quina=lottery['quina']["title"],
+        conc_loto=lottery['loto']["title"],
+        conc_lotomania=lottery['lotomania']["title"],
     )
 
 
